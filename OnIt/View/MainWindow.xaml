@@ -27,9 +27,17 @@
       </Style>
 
       <vm:MainViewModel x:Key="ViewModel" />
+      <!--<DataTemplate x:Key="taskTemplate" DataType="{x:Type vm:MainViewModel}">
+         <StackPanel>
+            <TextBlock Text="{Binding Path=Title}" />
+            <TextBlock Text="{Binding Path=Desc}"/>
+            <TextBlock Text="{Binding Path=CreationDate}"/>
+         </StackPanel>
+      </DataTemplate>-->
    </Window.Resources>
 
    <Grid>
+      
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="200"/>
          <ColumnDefinition Width="375*"/>
@@ -84,7 +92,9 @@
           Grid.Column="0"
           Background="#FF7A7574" Grid.ColumnSpan="2" />
 
-      <Grid x:Name="frmMain" Grid.Column="1" Grid.Row="1" />
+      <Grid x:Name="frmMain" Grid.Column="1" Grid.Row="1">
+         <!--<ListBox ItemsSource="{Binding Tasks, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource taskTemplate}"></ListBox>-->
+      </Grid>
 
    </Grid>
 </Window>
