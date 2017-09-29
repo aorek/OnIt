@@ -1,5 +1,6 @@
 ﻿using OnIt.Model;
 using OnIt.MVVM;
+using System;
 using System.Collections.ObjectModel;
 
 namespace OnIt.ViewModel
@@ -23,12 +24,7 @@ namespace OnIt.ViewModel
 
       public MainViewModel()
       {
-         Tasks = new ObservableCollection<TaskModel>
-         {
-            new TaskModel { Title = "Hacer la cama", Desc = "Cambiar las sabanas" },
-            new TaskModel { Title = "Hacer la comida", Desc = "De postre un bizcocho" },
-            new TaskModel { Title = "Ir al médico", Desc = "Revisión completa" }
-         };
+         
       }
    }
 }

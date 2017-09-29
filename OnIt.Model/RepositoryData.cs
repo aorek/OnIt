@@ -9,11 +9,25 @@ namespace OnIt.Model.Repository
 {
    public class RepositoryData<T> where T : class
    {
-      public DbContext Context { get; set; }
+      protected DbContext DbContext { get; set; }
+      protected DbSet<T> DbSet { get; set; }
 
-      public RepositoryData()
+      public RepositoryData(OnItDbContext dbConext)
       {
+         DbContext = dbConext;
+         DbSet = DbContext.Set<T>();
+      }
 
+      public IQueryable<T> GetData(string orderBy, string filter, params object[] paremetersFilter)
+      {
+         try
+         {
+            return DbContext.Set<T>();
+         }
+         catch (Exception ex)
+         {
+            throw ex;
+         }
       }
    }
 }
