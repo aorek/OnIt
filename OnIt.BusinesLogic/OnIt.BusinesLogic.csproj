@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BaseBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnIt.Model\OnIt.Model.csproj">

@@ -11,7 +11,7 @@ namespace OnIt.BusinesLogic
    public class BaseBL
    {
       internal OnItDbContext context;
-      internal DbConnection connection;
+      //internal DbConnection connection;
       internal string connectionString;
 
       public BaseBL(string connectionString)

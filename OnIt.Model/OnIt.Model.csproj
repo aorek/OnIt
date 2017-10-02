@@ -51,6 +51,10 @@
     <Compile Include="Migrations\201709252121300_InitialCreate.Designer.cs">
       <DependentUpon>201709252121300_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710021814244_TaskModel-update.cs" />
+    <Compile Include="Migrations\201710021814244_TaskModel-update.Designer.cs">
+      <DependentUpon>201710021814244_TaskModel-update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\OnItDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +68,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709252121300_InitialCreate.resx">
       <DependentUpon>201709252121300_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021814244_TaskModel-update.resx">
+      <DependentUpon>201710021814244_TaskModel-update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

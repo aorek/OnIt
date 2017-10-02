@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnIt.Model
 {
-   [Table("Task")]
+   [Table("TASK")]
    public class TaskModel 
    {
       # region Attributes

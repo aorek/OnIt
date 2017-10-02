@@ -18,16 +18,9 @@ namespace OnIt.Model.Repository
          DbSet = DbContext.Set<T>();
       }
 
-      public IQueryable<T> GetData(string orderBy, string filter, params object[] paremetersFilter)
+      public IQueryable<T> GetData(/*string orderBy, string filter, params object[] paremetersFilter*/)
       {
-         try
-         {
-            return DbContext.Set<T>();
-         }
-         catch (Exception ex)
-         {
-            throw ex;
-         }
+         return DbSet;
       }
    }
 }

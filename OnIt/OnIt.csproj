@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -104,6 +105,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnIt.BusinesLogic\OnIt.BusinesLogic.csproj">
+      <Project>{efc836ff-0380-4457-adca-fa7d8df6e4a7}</Project>
+      <Name>OnIt.BusinesLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnIt.Model\OnIt.Model.csproj">
       <Project>{6349e97d-4dd6-4d6e-b5b2-94a11b774191}</Project>
       <Name>OnIt.Model</Name>
