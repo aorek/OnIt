@@ -73,5 +73,11 @@
       <DependentUpon>201710021814244_TaskModel-update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnIt.Helper\OnIt.Helper.csproj">
+      <Project>{1d112151-80e8-49df-9bbe-577b691b6ae3}</Project>
+      <Name>OnIt.Helper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
