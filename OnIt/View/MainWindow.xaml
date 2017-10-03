@@ -29,7 +29,7 @@
          <StackPanel>
             <TextBlock Text="{Binding Path=Title}" />
             <TextBlock Text="{Binding Path=Desc}"/>
-            <TextBlock Text="{Binding Path=CreationDate}"/>
+            <TextBlock Text="{Binding Path=CreationDate, StringFormat='dd/MM/yyyy'}"/>
          </StackPanel>
       </DataTemplate>
    </Window.Resources>
@@ -54,7 +54,7 @@
       </Grid>
 
       <StackPanel Grid.Row="0" Grid.Column="1" Background="#FF7A7574">
-         <Button Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" Margin="0" HorizontalAlignment="Right">
+         <Button Command="{Binding NewTaskCommand}" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" Margin="0" HorizontalAlignment="Right">
             <Button.BorderBrush>
                <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
             </Button.BorderBrush>

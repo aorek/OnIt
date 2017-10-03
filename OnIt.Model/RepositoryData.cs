@@ -7,20 +7,25 @@ using System.Threading.Tasks;
 
 namespace OnIt.Model.Repository
 {
-   public class RepositoryData<T> where T : class
+   public class RepositoryData<TModel> where TModel : class
    {
       protected DbContext DbContext { get; set; }
-      protected DbSet<T> DbSet { get; set; }
+      protected DbSet<TModel> DbSet { get; set; }
 
       public RepositoryData(OnItDbContext dbConext)
       {
          DbContext = dbConext;
-         DbSet = DbContext.Set<T>();
+         DbSet = DbContext.Set<TModel>();
       }
 
-      public IQueryable<T> GetData(/*string orderBy, string filter, params object[] paremetersFilter*/)
+      public IQueryable<TModel> GetData(/*string orderBy, string filter, params object[] paremetersFilter*/)
       {
          return DbSet;
+      }
+
+      public void AddData(TModel entity)
+      {
+         DbSet.Add(entity);
       }
    }
 }
