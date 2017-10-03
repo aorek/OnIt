@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnIt.BusinesLogic
+namespace OnIt.BusinessLogic
 {
    public class TaskBL : BaseBL
    {
@@ -16,8 +16,17 @@ namespace OnIt.BusinesLogic
 
       public List<TaskModel> GetData()
       {
+         var taskList = new List<TaskModel>();
          var repo = new RepositoryData<TaskModel>(context);
-         return repo.GetData().ToList();
+
+         taskList = repo.GetData().ToList();
+         return taskList;
+      }
+
+      public void AddTask(TaskModel task)
+      {
+         var repo = new RepositoryData<TaskModel>(context);
+         repo.AddData(task);
       }
    }
 }
