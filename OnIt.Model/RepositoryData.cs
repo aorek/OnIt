@@ -11,10 +11,12 @@ namespace OnIt.Model.Repository
    {
       protected DbContext DbContext { get; set; }
       protected DbSet<TModel> DbSet { get; set; }
+      protected bool AutoCommit { get; set; }
 
-      public RepositoryData(OnItDbContext dbConext)
+      public RepositoryData(OnItDbContext dbConext, bool autoCommit = true)
       {
          DbContext = dbConext;
+         AutoCommit = autoCommit;
          DbSet = DbContext.Set<TModel>();
       }
 
@@ -23,9 +25,19 @@ namespace OnIt.Model.Repository
          return DbSet;
       }
 
-      public void AddData(TModel entity)
+      public void Create(TModel entity)
       {
-         DbSet.Add(entity);
+         try
+         {
+            DbSet.Add(entity);
+
+            if (AutoCommit)
+               DbContext.SaveChanges();
+         }
+         catch (Exception ex)
+         {
+            throw ex;
+         }
       }
    }
 }

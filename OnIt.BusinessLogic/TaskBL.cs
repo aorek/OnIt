@@ -23,10 +23,19 @@ namespace OnIt.BusinessLogic
          return taskList;
       }
 
-      public void AddTask(TaskModel task)
+      public bool Create(TaskModel task)
       {
          var repo = new RepositoryData<TaskModel>(context);
-         repo.AddData(task);
+         try
+         {
+            repo.Create(task);
+            return true;
+         }
+         catch (Exception)
+         {
+            return false;
+         }
+            
       }
    }
 }

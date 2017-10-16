@@ -8,10 +8,9 @@ namespace OnIt.Helper
 {
    public class ConnectionStringSingleton
    {
-      private static ConnectionStringSingleton instance;
-
       public string ConnectionString { get; set; }
 
+      private static ConnectionStringSingleton instance;
       public static ConnectionStringSingleton Instance
       {
          get
@@ -20,7 +19,6 @@ namespace OnIt.Helper
                instance = new ConnectionStringSingleton();
             return instance;
          }
-         
       }
 
       public ConnectionStringSingleton()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnIt.Task.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace OnIt.View
+namespace OnIt.Task.View
 {
    /// <summary>
    /// Interaction logic for FrmNewTask.xaml
@@ -22,6 +23,8 @@ namespace OnIt.View
       public FrmNewTaskWindow()
       {
          InitializeComponent();
+
+         DataContext = new FrmNewTaskWindowCommand(this);
       }
    }
 }

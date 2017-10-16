@@ -9,7 +9,8 @@ namespace OnIt.Model.Migrations
    {
       public Configuration()
       {
-         AutomaticMigrationsEnabled = false;
+         AutomaticMigrationsEnabled = true;
+         AutomaticMigrationDataLossAllowed = true;
          ContextKey = "OnIt.Model.OnItContext";
       }
 
@@ -29,10 +30,10 @@ namespace OnIt.Model.Migrations
          //
 
          context.TASK.AddOrUpdate(
-            new TaskModel { IdTask = 1, Title = "Hacer la cama", Desc = "Cambiar las sabanas", CreationDate = DateTime.Now },
-            new TaskModel { IdTask = 2, Title = "Cagar", Desc = "Ir al baño", CreationDate = DateTime.Now },
-            new TaskModel { IdTask = 3, Title = "Hacer la comida", Desc = "De postre un bizcocho", CreationDate = DateTime.Now },
-            new TaskModel { IdTask = 4, Title = "Ir al médico", Desc = "Revisión completa", CreationDate = DateTime.Now }
+            new TaskModel { IdTask = 1, Title = "Hacer la cama", Description = "Cambiar las sabanas", CreationDate = DateTime.Now, DueDate = DateTime.Now },
+            new TaskModel { IdTask = 2, Title = "Cagar", Description = "Ir al baño", CreationDate = DateTime.Now, DueDate = DateTime.Now },
+            new TaskModel { IdTask = 3, Title = "Hacer la comida", Description = "De postre un bizcocho", CreationDate = DateTime.Now, DueDate = DateTime.Now },
+            new TaskModel { IdTask = 4, Title = "Ir al médico", Description = "Revisión completa", CreationDate = DateTime.Now, DueDate = DateTime.Now }
          );
 
       }

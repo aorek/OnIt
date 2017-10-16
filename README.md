@@ -1,2 +1,2 @@
 # OnIt
-OnIt is an .NET aplication to manage task or TODOs
+OnIt is a .NET aplication to manage task or TODOs

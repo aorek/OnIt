@@ -1,5 +1,5 @@
 ﻿using OnIt.Model;
-using OnIt.View;
+using OnIt.Task.View;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

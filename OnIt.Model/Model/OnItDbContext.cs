@@ -14,6 +14,19 @@ namespace OnIt.Model
       {
       }
 
-      public virtual DbSet<TaskModel> TASK { get; set; }      
+      public virtual DbSet<TaskModel> TASK { get; set; }
+
+      protected override void OnModelCreating(DbModelBuilder modelBuilder)
+      {
+         modelBuilder.Entity<TaskModel>()
+                     .Property(f => f.CreationDate)
+                     .HasColumnType("datetime2")
+                     .HasPrecision(0);
+
+         modelBuilder.Entity<TaskModel>()
+                    .Property(f => f.DueDate)
+                    .HasColumnType("datetime2")
+                    .HasPrecision(0);
+      }
    }
 }

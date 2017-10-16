@@ -1,12 +1,10 @@
-﻿using OnIt.Model;
-using OnIt.Model.Repository;
-using OnIt.ViewModel;
+﻿using OnIt.Task.Command;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Common;
 using System.Windows;
 
-namespace OnIt.View
+namespace OnIt.Task.View
 {
    /// <summary>
    /// Interaction logic for MainWindow.xaml
@@ -15,8 +13,9 @@ namespace OnIt.View
    {
       public MainWindow()
       {
-         DataContext = new MainViewModel();
          InitializeComponent();
+
+         DataContext = new MainWindowCommand();
       }
    }
 }
