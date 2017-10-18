@@ -14,12 +14,12 @@ namespace OnIt.BusinessLogic
       {
       }
 
-      public List<TaskModel> GetData()
+      public List<TaskModel> GetAll()
       {
          var taskList = new List<TaskModel>();
          var repo = new RepositoryData<TaskModel>(context);
 
-         taskList = repo.GetData().ToList();
+         taskList = repo.GetAll().ToList();
          return taskList;
       }
 
@@ -35,7 +35,20 @@ namespace OnIt.BusinessLogic
          {
             return false;
          }
-            
+      }
+
+      public bool Delete(int idTask)
+      {
+         var repo = new RepositoryData<TaskModel>(context);
+         try
+         {
+            repo.Delete(idTask);
+            return true;
+         }
+         catch (Exception)
+         {
+            return false;
+         }
       }
    }
 }

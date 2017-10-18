@@ -18,6 +18,7 @@ namespace OnIt.Task.Command
       #region Commands
 
       public ICommand NewTaskCommand { get; set; }
+      public ICommand DeleteTaskCommand { get; set; }
 
       #endregion
 
@@ -26,12 +27,18 @@ namespace OnIt.Task.Command
       public MainWindowCommand()
       {
          taskBL = new TaskBL(Helper.ConnectionStringSingleton.Instance.ConnectionString);
-         Tasks = new ObservableCollection<TaskModel>(taskBL.GetData());
+         Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
 
          NewTaskCommand = new RelayCommand(NewTask);
+         DeleteTaskCommand = new RelayCommand(DeleteTask);
       }
 
-      private void NewTask()
+      private void DeleteTask(object o)
+      {
+         RefreshData();
+      }
+
+      private void NewTask(object o)
       {
          FrmNewTaskWindow newtaskWindow = new FrmNewTaskWindow();
          newtaskWindow.ShowDialog();
@@ -40,7 +47,7 @@ namespace OnIt.Task.Command
 
       private void RefreshData()
       {
-         Tasks = new ObservableCollection<TaskModel>(taskBL.GetData());
+         Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
       }
    }
 }

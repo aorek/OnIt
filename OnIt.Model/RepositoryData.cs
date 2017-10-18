@@ -20,11 +20,6 @@ namespace OnIt.Model.Repository
          DbSet = DbContext.Set<TModel>();
       }
 
-      public IQueryable<TModel> GetData(/*string orderBy, string filter, params object[] paremetersFilter*/)
-      {
-         return DbSet;
-      }
-
       public void Create(TModel entity)
       {
          try
@@ -38,6 +33,39 @@ namespace OnIt.Model.Repository
          {
             throw ex;
          }
+      }
+
+      public void Delete(TModel entity)
+      {
+         try
+         {
+            DbSet.Attach(entity);
+            DbSet.Remove(entity);
+
+            if (AutoCommit)
+               DbContext.SaveChanges();
+         }
+         catch (Exception ex)
+         {
+            throw ex;
+         }
+      }
+
+      public void Delete(int id)
+      {
+         var entity = GetById(id);
+         if (entity == null) return;
+         Delete(entity);
+      }
+
+      public IQueryable<TModel> GetAll()
+      {
+         return DbSet;
+      }
+
+      private TModel GetById(object id)
+      {
+         return DbSet.Find(id);
       }
    }
 }
