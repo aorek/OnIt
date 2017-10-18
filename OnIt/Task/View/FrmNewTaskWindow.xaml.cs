@@ -24,7 +24,7 @@ namespace OnIt.Task.View
       {
          InitializeComponent();
 
-         DataContext = new FrmNewTaskWindowCommand(this);
+         DataContext = new FrmNewTaskWindowCommand();
       }
    }
 }

@@ -27,21 +27,19 @@ namespace OnIt.Task.Commands
       private TaskBL taskBL;
       public FrmNewTaskWindow frmNewTaskWindow;
 
-      public FrmNewTaskWindowCommand(object window)
+      public FrmNewTaskWindowCommand()
       {
          AddTaskCommand = new RelayCommand(AddTask);
          CancelCommand = new RelayCommand(Cancel);
 
-         frmNewTaskWindow = (FrmNewTaskWindow)window;
-
          taskBL = new TaskBL(Helper.ConnectionStringSingleton.Instance.ConnectionString);
       }
 
-      private void AddTask()
+      private void AddTask(object o)
       {
          if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(DueDate))
          {
-            MessageBox.Show("Required fields can not be empty", Enums.MessageTypes.Error.ToString(), MessageBoxButton.OK);
+            MessageBox.Show("Required fields can not be empty", Enums.MessageTypes.Warning.ToString(), MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
          }
 
@@ -57,24 +55,28 @@ namespace OnIt.Task.Commands
 
             if (taskBL.Create(task))
             {
-               if (MessageBox.Show("Task added correctly", Enums.MessageTypes.Success.ToString(), MessageBoxButton.OK) == MessageBoxResult.OK);
-                  Cancel();
+               MessageBox.Show("Task added correctly", Enums.MessageTypes.Success.ToString(), MessageBoxButton.OK, MessageBoxImage.Information);
+               Cancel(o);
             }
             else
             {
-               MessageBox.Show("Something went wrong", Enums.MessageTypes.Error.ToString(), MessageBoxButton.OK);
+               MessageBox.Show("Something went wrong", Enums.MessageTypes.Warning.ToString(), MessageBoxButton.OK, MessageBoxImage.Warning);
             }
          }
          catch (Exception ex)
          {
-            MessageBox.Show(ex.ToString(), Enums.MessageTypes.Error.ToString(), MessageBoxButton.OK);
+            MessageBox.Show(ex.ToString(), Enums.MessageTypes.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
             throw ex;
          }
       }
 
-      private void Cancel()
+      private void Cancel(object o)
       {
-         frmNewTaskWindow.Close();
+         if (o is Window)
+         {
+            var auxWindow = o as Window;
+            auxWindow.Close();
+         }
       }
    }
 }

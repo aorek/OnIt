@@ -65,8 +65,14 @@
                   <ColumnDefinition />
                </Grid.ColumnDefinitions>
 
-               <Button Content="Ok" Grid.Column="0" Command="{Binding AddTaskCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" />
-               <Button Content="Cancel" Grid.Column="1" Command="{Binding CancelCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" />
+               <Button Content="Ok" Grid.Column="0" 
+                       Command="{Binding AddTaskCommand}" 
+                       CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" />
+               <Button Content="Cancel" Grid.Column="1" 
+                       Command="{Binding CancelCommand}"
+                       CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" />
 
             </Grid>
          </Grid>
