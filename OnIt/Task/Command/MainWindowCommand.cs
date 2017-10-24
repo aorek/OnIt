@@ -21,6 +21,7 @@ namespace OnIt.Task.Command
 
       public ICommand NewTaskCommand { get; set; }
       public ICommand EditTaskCommand { get; set; }
+      public ICommand CompleteTaskCommand { get; set; }
       public ICommand DeleteTaskCommand { get; set; }
 
       #endregion
@@ -33,7 +34,20 @@ namespace OnIt.Task.Command
          Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
 
          NewTaskCommand = new RelayCommand(NewTask);
+         CompleteTaskCommand = new RelayCommand(CompleteTask);
          DeleteTaskCommand = new RelayCommand(DeleteTask);
+      }
+
+      private void CompleteTask(object o)
+      {
+         var taskList = o as System.Windows.Controls.ListBox;
+
+         if (taskList.Items == null || taskList.Items.Count <= 0)
+            return;
+
+         var selectedTask = (TaskModel)taskList.SelectedItem;
+
+
       }
 
       private void NewTask(object o)
@@ -50,7 +64,7 @@ namespace OnIt.Task.Command
          if (taskList.Items == null || taskList.Items.Count <= 0)
             return;
 
-         var selectedTask = taskList.SelectedItem as TaskModel;
+         var selectedTask = (TaskModel)taskList.SelectedItem;
 
          if (MessageBox.Show($"Do you want to delete the task '{selectedTask.Title}' ?", Enums.MessageTypes.Information.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
          {
