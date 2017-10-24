@@ -58,6 +58,11 @@ namespace OnIt.Model.Repository
          Delete(entity);
       }
 
+      public void Edit(int idTask)
+      {
+
+      }
+
       public IQueryable<TModel> GetAll()
       {
          return DbSet;

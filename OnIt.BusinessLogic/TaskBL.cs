@@ -50,5 +50,20 @@ namespace OnIt.BusinessLogic
             return false;
          }
       }
+
+      public bool Edit(int idTask)
+      {
+         var repo = new RepositoryData<TaskModel>(context);
+         try
+         {
+            repo.Edit(idTask);
+            return true;
+         }
+         catch (Exception)
+         {
+            return false;
+         }
+
+      }
    }
 }

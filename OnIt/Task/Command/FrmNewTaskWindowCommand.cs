@@ -29,13 +29,13 @@ namespace OnIt.Task.Commands
 
       public FrmNewTaskWindowCommand()
       {
-         AddTaskCommand = new RelayCommand(AddTask);
+         AddTaskCommand = new RelayCommand(CreateTask);
          CancelCommand = new RelayCommand(Cancel);
 
          taskBL = new TaskBL(Helper.ConnectionStringSingleton.Instance.ConnectionString);
       }
 
-      private void AddTask(object o)
+      private void CreateTask(object o)
       {
          if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(DueDate))
          {
@@ -49,6 +49,7 @@ namespace OnIt.Task.Commands
             {
                Title = this.Title,
                Description = this.Description,
+               State = Enums.StateTypes.Active,
                DueDate = DateTime.ParseExact(this.DueDate, "dd/MM/yyyy", CultureInfo.CurrentCulture),
                CreationDate = DateTime.Now
             };

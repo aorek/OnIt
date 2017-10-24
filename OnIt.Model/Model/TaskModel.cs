@@ -22,6 +22,9 @@ namespace OnIt.Model
       [StringLength(100)]
       public string Description { get; set; }
 
+      [Required]
+      public StateTypes State { get; set; }
+
       public PriorityTypes Priority { get; set; }
 
       [DataType(DataType.DateTime)]

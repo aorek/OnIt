@@ -8,11 +8,18 @@ namespace OnIt.Helper
 {
    public static class Enums
    {
-      public enum PriorityTypes {
+      public enum PriorityTypes
+      {
          Low,
          Medium,
          High,
          Very_high
+      }
+
+      public enum StateTypes
+      {
+         Active,
+         Completed
       }
 
       public enum MessageTypes

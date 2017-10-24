@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201710121748245_Priority-DueTimeFields-TaskModel.Designer.cs">
       <DependentUpon>201710121748245_Priority-DueTimeFields-TaskModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710242335492_State field TaskModel.cs" />
+    <Compile Include="Migrations\201710242335492_State field TaskModel.Designer.cs">
+      <DependentUpon>201710242335492_State field TaskModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\OnItDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710121748245_Priority-DueTimeFields-TaskModel.resx">
       <DependentUpon>201710121748245_Priority-DueTimeFields-TaskModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710242335492_State field TaskModel.resx">
+      <DependentUpon>201710242335492_State field TaskModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
