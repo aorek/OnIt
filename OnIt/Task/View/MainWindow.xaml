@@ -52,14 +52,36 @@
          <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="OnIt" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Segoe UI"/>
       </Grid>
 
-      <StackPanel Grid.Row="0" Grid.Column="1" Background="#FF7A7574">
-         <Button Command="{Binding NewTaskCommand}" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" Margin="0" HorizontalAlignment="Right">
-            <Button.BorderBrush>
-               <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
-            </Button.BorderBrush>
-            <TextBlock Text="&#xECC8;" Grid.Column="0" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="0" FontSize="24"/>
-         </Button>
-      </StackPanel>
+      <Grid Grid.Row="0" Grid.Column="1" Background="#FF7A7574">
+         <Grid HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition />
+               <ColumnDefinition />
+               <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Command="{Binding NewTaskCommand}" Grid.Column="0" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" Margin="0">
+               <Button.BorderBrush>
+                  <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
+               </Button.BorderBrush>
+               <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Foreground="White" FontSize="24"/>
+            </Button>
+
+            <Button Command="{Binding EditTaskCommand}" Grid.Column="1" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" >
+               <Button.BorderBrush>
+                  <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
+               </Button.BorderBrush>
+               <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="0" FontSize="24"/>
+            </Button>
+
+            <Button Command="{Binding DeleteTaskCommand}" CommandParameter="{Binding ElementName=frmListMain}" Grid.Column="2" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" >
+               <Button.BorderBrush>
+                  <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
+               </Button.BorderBrush>
+               <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="0" FontSize="24"/>
+            </Button>
+         </Grid>
+      </Grid>
 
       <Menu Grid.Row="1"
           Grid.Column="0"
@@ -89,8 +111,8 @@
           Grid.Column="0"
           Background="#FF7A7574" Grid.ColumnSpan="2" />
 
-      <Grid x:Name="frmMain" Grid.Column="1" Grid.Row="1">
-         <ListBox ItemsSource="{Binding Tasks, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource taskTemplate}"></ListBox>
+      <Grid Grid.Column="1" Grid.Row="1">
+         <ListBox x:Name="frmListMain" ItemsSource="{Binding Tasks, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource taskTemplate}"></ListBox>
       </Grid>
 
    </Grid>

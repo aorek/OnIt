@@ -18,6 +18,7 @@ namespace OnIt.Helper
       public enum MessageTypes
       {
          Success,
+         Information,
          Error,
          Warning
       }
