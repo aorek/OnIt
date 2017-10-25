@@ -77,7 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Task\View\FrmNewTaskWindow.xaml">
+    <Page Include="Task\View\FrmNewEditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,10 +93,10 @@
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Task\Command\FrmNewTaskWindowCommand.cs" />
     <Compile Include="Task\Command\MainWindowCommand.cs" />
-    <Compile Include="Task\ViewModel\FrmNewTaskWindowVM.cs" />
+    <Compile Include="Task\ViewModel\FrmNewEditTaskWindowVM.cs" />
     <Compile Include="Task\ViewModel\MainWindowVM.cs" />
-    <Compile Include="Task\View\FrmNewTaskWindow.xaml.cs">
-      <DependentUpon>FrmNewTaskWindow.xaml</DependentUpon>
+    <Compile Include="Task\View\FrmNewEditTaskWindow.xaml.cs">
+      <DependentUpon>FrmNewEditTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Task\View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

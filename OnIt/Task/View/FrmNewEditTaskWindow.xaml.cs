@@ -18,13 +18,13 @@ namespace OnIt.Task.View
    /// <summary>
    /// Interaction logic for FrmNewTask.xaml
    /// </summary>
-   public partial class FrmNewTaskWindow : Window
+   public partial class FrmNewEditTaskWindow : Window
    {
-      public FrmNewTaskWindow()
+      public FrmNewEditTaskWindow(int? modelId = null)
       {
          InitializeComponent();
 
-         DataContext = new FrmNewTaskWindowCommand();
+         DataContext = new FrmNewEditTaskWindowCommand(modelId);
       }
    }
 }

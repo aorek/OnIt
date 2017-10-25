@@ -7,8 +7,36 @@ using System.Threading.Tasks;
 
 namespace OnIt.Task.ViewModel
 {
-   public class FrmNewTaskWindowVM : NotifyPropertyChanged
+   public class FrmNewEditTaskWindowVM : NotifyPropertyChanged
    {
+      private string titleWindow;
+      public string TitleWindow
+      {
+         get { return titleWindow; }
+         set
+         {
+            if (value != titleWindow)
+            {
+               titleWindow = value;
+               OnPropertyChanged(nameof(TitleWindow));
+            }
+         }
+      }
+
+      private int? idTask;
+      public int? IdTask
+      {
+         get { return idTask; }
+         set
+         {
+            if (value != idTask)
+            {
+               idTask = value;
+               OnPropertyChanged(nameof(IdTask));
+            }
+         }
+      }
+
       private string title;
       public string Title
       {

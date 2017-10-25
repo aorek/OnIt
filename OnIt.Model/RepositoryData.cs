@@ -58,19 +58,30 @@ namespace OnIt.Model.Repository
          Delete(entity);
       }
 
-      public void Edit(int idTask)
-      {
-
-      }
-
       public IQueryable<TModel> GetAll()
       {
          return DbSet;
       }
 
-      private TModel GetById(object id)
+      public TModel GetById(object id)
       {
          return DbSet.Find(id);
+      }
+
+      public virtual void Update(TModel entity, TModel modifiedEntity)
+      {
+         var dbEntityEntry = DbContext.Entry(entity);
+         try
+         {
+            dbEntityEntry.CurrentValues.SetValues(modifiedEntity);
+
+            if (AutoCommit)
+               DbContext.SaveChanges();
+         }
+         catch (Exception ex)
+         {
+            throw ex;
+         }
       }
    }
 }

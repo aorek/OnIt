@@ -34,6 +34,7 @@ namespace OnIt.Task.Command
          Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
 
          NewTaskCommand = new RelayCommand(NewTask);
+         EditTaskCommand = new RelayCommand(EditTask);
          CompleteTaskCommand = new RelayCommand(CompleteTask);
          DeleteTaskCommand = new RelayCommand(DeleteTask);
       }
@@ -52,7 +53,20 @@ namespace OnIt.Task.Command
 
       private void NewTask(object o)
       {
-         FrmNewTaskWindow newtaskWindow = new FrmNewTaskWindow();
+         FrmNewEditTaskWindow newtaskWindow = new FrmNewEditTaskWindow();
+         newtaskWindow.ShowDialog();
+         RefreshData();
+      }
+
+      private void EditTask(object o)
+      {
+         var taskList = o as System.Windows.Controls.ListBox;
+
+         if (taskList.Items == null || taskList.Items.Count <= 0)
+            return;
+
+         var selectedTask = (TaskModel)taskList.SelectedItem;
+         FrmNewEditTaskWindow newtaskWindow = new FrmNewEditTaskWindow(selectedTask.IdTask);
          newtaskWindow.ShowDialog();
          RefreshData();
       }
