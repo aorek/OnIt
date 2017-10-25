@@ -30,7 +30,7 @@ namespace OnIt.Task.Command
 
       public MainWindowCommand()
       {
-         taskBL = new TaskBL(Helper.ConnectionStringSingleton.Instance.ConnectionString);
+         taskBL = new TaskBL(ConnectionSQLiteDBSingleton.Instance.DbConnection);
          Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
 
          NewTaskCommand = new RelayCommand(NewTask);

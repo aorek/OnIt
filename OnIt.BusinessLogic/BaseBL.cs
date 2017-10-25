@@ -11,12 +11,21 @@ namespace OnIt.BusinessLogic
    public class BaseBL
    {
       internal OnItDbContext context;
+      internal DbConnection connection;
       internal string connectionString;
+
+      public BaseBL(DbConnection connection)
+      {
+         this.connection = connection;
+         context = new OnItDbContext(connection);
+         connectionString = context.Database.Connection.ConnectionString;
+      }
 
       public BaseBL(string connectionString)
       {
          this.connectionString = connectionString;
          context = new OnItDbContext(connectionString);
+         connection = context.Database.Connection;
       }
    }
 }

@@ -32,7 +32,7 @@ namespace OnIt.Task.Commands
          AddTaskCommand = new RelayCommand(CreateTask);
          CancelCommand = new RelayCommand(Cancel);
 
-         taskBL = new TaskBL(Helper.ConnectionStringSingleton.Instance.ConnectionString);
+         taskBL = new TaskBL(ConnectionSQLiteDBSingleton.Instance.DbConnection);
       }
 
       private void CreateTask(object o)

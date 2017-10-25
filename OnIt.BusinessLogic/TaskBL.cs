@@ -2,6 +2,7 @@
 using OnIt.Model.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace OnIt.BusinessLogic
 {
    public class TaskBL : BaseBL
    {
-      public TaskBL(string connectionString) : base(connectionString)
+      public TaskBL(DbConnection connection) : base(connection)
       {
       }
 
