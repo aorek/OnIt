@@ -24,6 +24,10 @@
             </Trigger>
          </Style.Triggers>
       </Style>
+      <Style x:Key="SegoeMDL2AssetsFont">
+         <Setter Property="TextElement.FontFamily" Value="/OnIt;component/Resources/#Segoe MDL2 Assets" />
+         <Setter Property="TextElement.Foreground" Value="White" />
+      </Style>
 
       <DataTemplate x:Key="taskTemplate">
          <StackPanel>
@@ -61,9 +65,9 @@
                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{Binding NewTaskCommand}" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" Margin="0">
+            <Button Grid.Column="0" Command="{Binding NewTaskCommand}" Background="#FF7A7574" Height="40" Width="40" Margin="5, 0" HorizontalContentAlignment="Center">
                <Button.BorderBrush>
-                  <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
+                  <SolidColorBrush Color="#FF7A7574" />
                </Button.BorderBrush>
                <Button.ToolTip>
                   <StackPanel>
@@ -71,12 +75,12 @@
                      <TextBlock>Creates new task.</TextBlock>
                   </StackPanel>
                </Button.ToolTip>
-               <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Foreground="White" FontSize="24"/>
+               <TextBlock Text="&#xE710;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="24"/>
             </Button>
 
-            <Button Grid.Column="1" Command="{Binding EditTaskCommand}" CommandParameter="{Binding ElementName=frmListMain}" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" >
+            <Button Grid.Column="1" Command="{Binding EditTaskCommand}" CommandParameter="{Binding ElementName=frmListMain}" Background="#FF7A7574" Height="40" Width="40" Margin="5, 0" HorizontalContentAlignment="Center" >
                <Button.BorderBrush>
-                  <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
+                  <SolidColorBrush Color="#FF7A7574" />
                </Button.BorderBrush>
                <Button.ToolTip>
                   <StackPanel>
@@ -84,12 +88,12 @@
                      <TextBlock>Edits the selected task.</TextBlock>
                   </StackPanel>
                </Button.ToolTip>
-               <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="0" FontSize="24"/>
+               <TextBlock Text="&#xE70F;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="24"/>
             </Button>
 
-            <Button Grid.Column="2" Command="{Binding CompleteTaskCommand}" CommandParameter="{Binding ElementName=frmListMain}" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" >
+            <Button Grid.Column="2" Command="{Binding CompleteTaskCommand}" CommandParameter="{Binding ElementName=frmListMain}" Background="#FF7A7574" Height="40" Width="40" Margin="5, 0" HorizontalContentAlignment="Center" >
                <Button.BorderBrush>
-                  <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
+                  <SolidColorBrush Color="#FF7A7574" />
                </Button.BorderBrush>
                <Button.ToolTip>
                   <StackPanel>
@@ -97,12 +101,12 @@
                      <TextBlock>Mark as completed the selected task.</TextBlock>
                   </StackPanel>
                </Button.ToolTip>
-               <TextBlock Text="&#xE73A;" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="0" FontSize="24"/>
+               <TextBlock Text="&#xE73A;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="24"/>
             </Button>
 
-            <Button Grid.Column="3" Command="{Binding DeleteTaskCommand}" CommandParameter="{Binding ElementName=frmListMain}" Background="#FF7A7574" Height="40" Width="40" HorizontalContentAlignment="Center" >
+            <Button Grid.Column="3" Command="{Binding DeleteTaskCommand}" CommandParameter="{Binding ElementName=frmListMain}" Background="#FF7A7574" Height="40" Width="40" Margin="5, 0" HorizontalContentAlignment="Center" >
                <Button.BorderBrush>
-                  <SolidColorBrush Color="#FF7A7574" Opacity="0"/>
+                  <SolidColorBrush Color="#FF7A7574" />
                </Button.BorderBrush>
                <Button.ToolTip>
                   <StackPanel>
@@ -110,38 +114,32 @@
                      <TextBlock>Deletes the selected task.</TextBlock>
                   </StackPanel>
                </Button.ToolTip>
-               <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="0" FontSize="24"/>
+               <TextBlock Text="&#xE74D;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="24"/>
             </Button>
          </Grid>
       </Grid>
 
-      <Menu Grid.Row="1"
-          Grid.Column="0"
-          Background="#FF2C2C2C">
-
+      <Menu Grid.Row="1" Grid.Column="0" Background="#FF2C2C2C">
          <MenuItem Header="All">
             <MenuItem.Icon>
-               <TextBlock Text="&#xE12B;" FontFamily="Segoe MDL2 Assets" Foreground="White" Height="16"/>
+               <TextBlock Text="&#xE774;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="16"/>
             </MenuItem.Icon>
          </MenuItem>
 
          <MenuItem Header="Active">
             <MenuItem.Icon>
-               <TextBlock Text="&#xE111;" FontFamily="Segoe MDL2 Assets" Foreground="White" Height="16"/>
+               <TextBlock Text="&#xEBE7;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="16"/>
             </MenuItem.Icon>
          </MenuItem>
 
          <MenuItem Header="Completed">
             <MenuItem.Icon>
-               <TextBlock Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Foreground="White" Height="16"/>
+               <TextBlock Text="&#xE8FB;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="16"/>
             </MenuItem.Icon>
          </MenuItem>
-
       </Menu>
 
-      <Grid Grid.Row="2"
-          Grid.Column="0"
-          Background="#FF7A7574" Grid.ColumnSpan="2" />
+      <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="#FF7A7574" />
 
       <Grid Grid.Column="1" Grid.Row="1">
          <ListBox x:Name="frmListMain" ItemsSource="{Binding Tasks, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource taskTemplate}"></ListBox>
