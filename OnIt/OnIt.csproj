@@ -91,7 +91,7 @@
     </Compile>
     <Compile Include="MVVM\NotifyPropertyChanged.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
-    <Compile Include="Task\Command\FrmNewTaskWindowCommand.cs" />
+    <Compile Include="Task\Command\FrmNewEditTaskWindowCommand.cs" />
     <Compile Include="Task\Command\MainWindowCommand.cs" />
     <Compile Include="Task\ViewModel\FrmNewEditTaskWindowVM.cs" />
     <Compile Include="Task\ViewModel\MainWindowVM.cs" />

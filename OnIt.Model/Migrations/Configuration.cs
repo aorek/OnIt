@@ -33,7 +33,8 @@ namespace OnIt.Model.Migrations
             new TaskModel { IdTask = 1, Title = "Hacer la cama", Description = "Cambiar las sabanas", CreationDate = DateTime.Now, DueDate = DateTime.Now },
             new TaskModel { IdTask = 2, Title = "Cagar", Description = "Ir al baño", CreationDate = DateTime.Now, DueDate = DateTime.Now },
             new TaskModel { IdTask = 3, Title = "Hacer la comida", Description = "De postre un bizcocho", CreationDate = DateTime.Now, DueDate = DateTime.Now },
-            new TaskModel { IdTask = 4, Title = "Ir al médico", Description = "Revisión completa", CreationDate = DateTime.Now, DueDate = DateTime.Now }
+            new TaskModel { IdTask = 4, Title = "Ir al médico", Description = "Revisión completa", CreationDate = DateTime.Now, DueDate = DateTime.Now },
+            new TaskModel { IdTask = 5, Title = "Trabajar", Description = "Completar tarea de ayer", CreationDate = DateTime.Now, DueDate = DateTime.Now }
          );
 
       }

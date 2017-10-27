@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace OnIt.BusinessLogic
 {
-   public class BaseBL
-   {
-      internal OnItDbContext context;
-      internal string connectionString;
+   //public class BaseBL
+   //{
+   //   internal OnItDbContext context;
+   //   internal string connectionString;
 
-      public BaseBL(string connectionString)
-      {
-         this.connectionString = connectionString;
-         context = new OnItDbContext(connectionString);
-      }
-   }
+   //   public BaseBL(string connectionString)
+   //   {
+   //      this.connectionString = connectionString;
+   //      context = new OnItDbContext(connectionString);
+   //   }
+   //}
 }

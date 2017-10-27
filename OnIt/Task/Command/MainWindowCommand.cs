@@ -23,6 +23,7 @@ namespace OnIt.Task.Command
       public ICommand EditTaskCommand { get; set; }
       public ICommand CompleteTaskCommand { get; set; }
       public ICommand DeleteTaskCommand { get; set; }
+      public ICommand FilterCommand { get; set; }
 
       #endregion
 
@@ -30,13 +31,14 @@ namespace OnIt.Task.Command
 
       public MainWindowCommand()
       {
-         taskBL = new TaskBL(Helper.ConnectionStringSingleton.Instance.ConnectionString);
+         taskBL = new TaskBL(ConnectionStringSingleton.Instance.ConnectionString);
          Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
 
          NewTaskCommand = new RelayCommand(NewTask);
          EditTaskCommand = new RelayCommand(EditTask);
          CompleteTaskCommand = new RelayCommand(CompleteTask);
          DeleteTaskCommand = new RelayCommand(DeleteTask);
+         FilterCommand = new RelayCommand(FilterTask);
       }
 
       private void CompleteTask(object o)
@@ -55,7 +57,7 @@ namespace OnIt.Task.Command
       {
          FrmNewEditTaskWindow newtaskWindow = new FrmNewEditTaskWindow();
          newtaskWindow.ShowDialog();
-         RefreshData();
+         RefreshByFilter();
       }
 
       private void EditTask(object o)
@@ -68,7 +70,7 @@ namespace OnIt.Task.Command
          var selectedTask = (TaskModel)taskList.SelectedItem;
          FrmNewEditTaskWindow newtaskWindow = new FrmNewEditTaskWindow(selectedTask.IdTask);
          newtaskWindow.ShowDialog();
-         RefreshData();
+         RefreshByFilter();
       }
 
       private void DeleteTask(object o)
@@ -83,13 +85,45 @@ namespace OnIt.Task.Command
          if (MessageBox.Show($"Do you want to delete the task '{selectedTask.Title}' ?", Enums.MessageTypes.Information.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
          {
             taskBL.Delete(selectedTask.IdTask);
-            RefreshData();
+            RefreshByFilter();
          }
       }
 
-      private void RefreshData()
+      private void FilterTask(object o)
+      {
+         var control = o as System.Windows.Controls.MenuItem;
+
+         if (control == null)
+            return;
+
+         Filter = (string)control.Header;
+
+         RefreshByFilter();
+      }
+
+      private void RefreshByFilter()
+      {
+         switch (Filter)
+         {
+            default:
+            case "All":
+               GetAllTask();
+               break;
+            case "Active":
+            case "Completed":
+               GetByFilter(Filter);
+               break;
+         }
+      }
+
+      private void GetAllTask()
       {
          Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
+      }
+
+      private void GetByFilter(string filter)
+      {
+         Tasks = new ObservableCollection<TaskModel>(taskBL.GetByFilter(filter));
       }
    }
 }

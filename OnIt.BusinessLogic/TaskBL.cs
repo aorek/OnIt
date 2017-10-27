@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 
 namespace OnIt.BusinessLogic
 {
-   public class TaskBL : BaseBL
+   public class TaskBL
    {
-      public TaskBL(string connectionString) : base(connectionString)
+      internal OnItDbContext context;
+      internal string connectionString;
+
+      public TaskBL(string connectionString)
       {
+         this.connectionString = connectionString;
+         context = new OnItDbContext(connectionString);
       }
 
       public List<TaskModel> GetAll()
@@ -25,10 +30,20 @@ namespace OnIt.BusinessLogic
 
       public object GetById(int idTask)
       {
-         var taskList = new TaskModel();
+         var task = new TaskModel();
          var repo = new RepositoryData<TaskModel>(context);
 
-         taskList = repo.GetById(idTask);
+         task = repo.GetById(idTask);
+         return task;
+      }
+
+      public List<TaskModel> GetByFilter(string filter)
+      {
+         var alltaskList = new List<TaskModel>();
+         var taskList = new List<TaskModel>();
+         alltaskList = GetAll();
+         taskList = alltaskList.Where(t => t.State.ToString() == filter).ToList();
+         
          return taskList;
       }
 
@@ -60,6 +75,11 @@ namespace OnIt.BusinessLogic
          }
       }
 
+      public void Reload<TModel>(TModel entity) where TModel : class
+      {
+         context.Entry(entity).Reload();
+      }
+
       public bool Update(int idTask, TaskModel modifiedModel)
       {
          var repo = new RepositoryData<TaskModel>(context);
@@ -67,6 +87,7 @@ namespace OnIt.BusinessLogic
          try
          {
             repo.Update(model, modifiedModel);
+            Reload(model);
             return true;
          }
          catch (Exception ex)

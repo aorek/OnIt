@@ -120,19 +120,19 @@
       </Grid>
 
       <Menu Grid.Row="1" Grid.Column="0" Background="#FF2C2C2C">
-         <MenuItem Header="All">
+         <MenuItem Header="All" Command="{Binding FilterCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <MenuItem.Icon>
                <TextBlock Text="&#xE774;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="16"/>
             </MenuItem.Icon>
          </MenuItem>
 
-         <MenuItem Header="Active">
+         <MenuItem Header="Active" Command="{Binding FilterCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <MenuItem.Icon>
                <TextBlock Text="&#xEBE7;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="16"/>
             </MenuItem.Icon>
          </MenuItem>
 
-         <MenuItem Header="Completed">
+         <MenuItem Header="Completed" Command="{Binding FilterCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <MenuItem.Icon>
                <TextBlock Text="&#xE8FB;" Style="{StaticResource SegoeMDL2AssetsFont}" FontSize="16"/>
             </MenuItem.Icon>

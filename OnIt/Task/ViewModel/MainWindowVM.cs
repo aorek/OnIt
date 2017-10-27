@@ -10,7 +10,6 @@ namespace OnIt.Task.ViewModel
    public class MainWindowVM : NotifyPropertyChanged
    {
       private ObservableCollection<TaskModel> tasks;
-
       public ObservableCollection<TaskModel> Tasks
       {
          get { return tasks; }
@@ -24,6 +23,18 @@ namespace OnIt.Task.ViewModel
          }
       }
 
-      
+      private string filter;
+      public string Filter
+      {
+         get { return filter; }
+         set
+         {
+            if (value != filter)
+            {
+               filter = value;
+               OnPropertyChanged(nameof(Filter));
+            }
+         }
+      }
    }
 }
