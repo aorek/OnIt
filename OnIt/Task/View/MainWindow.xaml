@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OnIt.Task"
+        xmlns:enum="clr-namespace:OnIt.Helper;assembly=OnIt.Helper"
         mc:Ignorable="d"
         Title="OnIt" Height="603.5" Width="872.5" MinWidth="440" FontFamily="Segoe UI Light" FontSize="16">
 
@@ -30,11 +30,17 @@
       </Style>
 
       <DataTemplate x:Key="taskTemplate">
-         <StackPanel>
+         <StackPanel x:Name="taskSP" Background="#BFA01600">
             <TextBlock Text="{Binding Path=Title}" />
             <TextBlock Text="{Binding Path=Description}" />
             <TextBlock Text="{Binding Path=DueDate, StringFormat='dd/MM/yyyy'}" />
          </StackPanel>
+
+         <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=State}" Value="{x:Static enum:Enums+StateTypes.Completed}">
+               <Setter Property="Background" TargetName="taskSP" Value="#BF4B8945"></Setter>
+            </DataTrigger>
+         </DataTemplate.Triggers>
       </DataTemplate>
    </Window.Resources>
 
