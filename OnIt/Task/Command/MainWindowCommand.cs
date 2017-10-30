@@ -44,13 +44,12 @@ namespace OnIt.Task.Command
       private void CompleteTask(object o)
       {
          var taskList = o as System.Windows.Controls.ListBox;
-
          if (taskList.Items == null || taskList.Items.Count <= 0)
             return;
 
          var selectedTask = (TaskModel)taskList.SelectedItem;
-
-
+         taskBL.SetState(selectedTask.IdTask);
+         RefreshByFilter();
       }
 
       private void NewTask(object o)

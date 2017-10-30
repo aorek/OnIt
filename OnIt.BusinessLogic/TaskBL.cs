@@ -1,4 +1,5 @@
-﻿using OnIt.Model;
+﻿using OnIt.Helper;
+using OnIt.Model;
 using OnIt.Model.Repository;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,19 @@ namespace OnIt.BusinessLogic
          {
             return false;
          }
+      }
+
+      public void SetState(int id)
+      {
+         var model = GetById(id);
+         var modifiedModel = model.CloneObject<TaskModel>() ;
+
+         if (modifiedModel.State == Enums.StateTypes.Active)
+            modifiedModel.State = Enums.StateTypes.Completed;
+         else
+            modifiedModel.State = Enums.StateTypes.Active;
+
+         Update(id, modifiedModel);
       }
 
       public void Reload<TModel>(TModel entity) where TModel : class
