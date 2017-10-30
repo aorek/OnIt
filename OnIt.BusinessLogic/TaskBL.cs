@@ -25,7 +25,7 @@ namespace OnIt.BusinessLogic
          var taskList = new List<TaskModel>();
          var repo = new RepositoryData<TaskModel>(context);
 
-         taskList = repo.GetAll().ToList();
+         taskList = repo.GetAll().OrderBy(t => t.DueDate).ToList();
          return taskList;
       }
 
