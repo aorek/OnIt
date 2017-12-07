@@ -27,7 +27,7 @@ namespace OnIt.Task.Commands
 
       public FrmNewEditTaskWindowCommand(int? modelId)
       {
-         AcceptCommand = new RelayCommand(CreateTask);
+         AcceptCommand = new RelayCommand(CreateAOrUpdateTask);
          CancelCommand = new RelayCommand(Cancel);
 
          taskBL = new TaskBL(ConnectionStringSingleton.Instance.ConnectionString);
@@ -52,7 +52,7 @@ namespace OnIt.Task.Commands
          }
       }
 
-      private void CreateTask(object o)
+      private void CreateAOrUpdateTask(object o)
       {
          if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(DueDate))
          {
@@ -64,7 +64,7 @@ namespace OnIt.Task.Commands
          {
             var task = new TaskModel()
             {
-               IdTask = (this.IdTask.HasValue ? (int)this.IdTask : 0),
+               IdTask = (IdTask.HasValue ? (int)this.IdTask : 0),
                Title = this.Title,
                Description = this.Description,
                State = Enums.StateTypes.Active,
@@ -96,13 +96,11 @@ namespace OnIt.Task.Commands
                   MessageBox.Show("Something went wrong", Enums.MessageTypes.Warning.ToString(), MessageBoxButton.OK, MessageBoxImage.Warning);
                }
             }
-
-            
          }
          catch (Exception ex)
          {
-            MessageBox.Show(ex.ToString(), Enums.MessageTypes.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
-            throw ex;
+            MessageBox.Show(ex.Message, Enums.MessageTypes.Error.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
          }
       }
 

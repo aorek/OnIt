@@ -20,7 +20,7 @@ namespace OnIt.Model.Repository
          DbSet = DbContext.Set<TModel>();
       }
 
-      public void Create(TModel entity)
+      public bool Create(TModel entity)
       {
          try
          {
@@ -28,6 +28,8 @@ namespace OnIt.Model.Repository
 
             if (AutoCommit)
                DbContext.SaveChanges();
+
+            return true;
          }
          catch (Exception ex)
          {
@@ -35,7 +37,7 @@ namespace OnIt.Model.Repository
          }
       }
 
-      public void Delete(TModel entity)
+      public bool Delete(TModel entity)
       {
          try
          {
@@ -44,6 +46,8 @@ namespace OnIt.Model.Repository
 
             if (AutoCommit)
                DbContext.SaveChanges();
+
+            return true;
          }
          catch (Exception ex)
          {
@@ -51,11 +55,11 @@ namespace OnIt.Model.Repository
          }
       }
 
-      public void Delete(int id)
+      public bool Delete(int id)
       {
          var entity = GetById(id);
-         if (entity == null) return;
-         Delete(entity);
+         if (entity == null) return false;
+         return Delete(entity);
       }
 
       public IQueryable<TModel> GetAll()
@@ -68,15 +72,18 @@ namespace OnIt.Model.Repository
          return DbSet.Find(id);
       }
 
-      public virtual void Update(TModel entity, TModel modifiedEntity)
+      public bool Update(TModel entity, TModel modifiedEntity)
       {
          var dbEntityEntry = DbContext.Entry(entity);
          try
          {
             dbEntityEntry.CurrentValues.SetValues(modifiedEntity);
+            dbEntityEntry.State = EntityState.Modified;
 
             if (AutoCommit)
                DbContext.SaveChanges();
+
+            return true;
          }
          catch (Exception ex)
          {

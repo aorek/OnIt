@@ -32,7 +32,8 @@ namespace OnIt.Task.Command
       public MainWindowCommand()
       {
          taskBL = new TaskBL(ConnectionStringSingleton.Instance.ConnectionString);
-         Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
+         TasksSingleton.Instance.Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll().OrderBy(t => t.DueDate));
+         Tasks = TasksSingleton.Instance.Tasks;
 
          NewTaskCommand = new RelayCommand(NewTask);
          EditTaskCommand = new RelayCommand(EditTask);
@@ -47,8 +48,8 @@ namespace OnIt.Task.Command
          if (taskList.Items == null || taskList.Items.Count <= 0)
             return;
 
-         var selectedTask = (TaskModel)taskList.SelectedItem;
-         taskBL.SetState(selectedTask.IdTask);
+         var selectedTasks = taskList.SelectedItems.Cast<TaskModel>();
+         taskBL.SetState(selectedTasks.Select(task => task.IdTask).ToList());
          RefreshByFilter();
       }
 
@@ -59,12 +60,18 @@ namespace OnIt.Task.Command
          RefreshByFilter();
       }
 
-      private void EditTask(object o)
+      public void EditTask(object o)
       {
          var taskList = o as System.Windows.Controls.ListBox;
 
          if (taskList.Items == null || taskList.Items.Count <= 0)
             return;
+
+         if (taskList.SelectedItems.Count > 1)
+         {
+            MessageBox.Show("You can not edit multiple tasks at the same time", Enums.MessageTypes.Information.ToString(), MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            return;
+         }
 
          var selectedTask = (TaskModel)taskList.SelectedItem;
          FrmNewEditTaskWindow newtaskWindow = new FrmNewEditTaskWindow(selectedTask.IdTask);
@@ -79,11 +86,17 @@ namespace OnIt.Task.Command
          if (taskList.Items == null || taskList.Items.Count <= 0)
             return;
 
-         var selectedTask = (TaskModel)taskList.SelectedItem;
+         var selectedTasks = taskList.SelectedItems.Cast<TaskModel>();
 
-         if (MessageBox.Show($"Do you want to delete the task '{selectedTask.Title}' ?", Enums.MessageTypes.Information.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+         bool result = false;
+         if (selectedTasks.Count() > 1)
+            result = MessageBox.Show("Do you want to delete the selected tasks ?", Enums.MessageTypes.Information.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+         else if (selectedTasks.Count() == 1)
+            result = MessageBox.Show($"Do you want to delete the task '{selectedTasks.FirstOrDefault().Title}' ?", Enums.MessageTypes.Information.ToString(), MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+
+         if (result)
          {
-            taskBL.Delete(selectedTask.IdTask);
+            taskBL.Delete(selectedTasks.Select(task => task.IdTask).ToList());
             RefreshByFilter();
          }
       }
@@ -117,12 +130,12 @@ namespace OnIt.Task.Command
 
       private void GetAllTask()
       {
-         Tasks = new ObservableCollection<TaskModel>(taskBL.GetAll());
+         Tasks = new ObservableCollection<TaskModel>(TasksSingleton.Instance.Tasks.OrderBy(t => t.DueDate));
       }
 
       private void GetByFilter(string filter)
       {
-         Tasks = new ObservableCollection<TaskModel>(taskBL.GetByFilter(filter));
+         Tasks = taskBL.GetByFilter(filter);
       }
    }
 }
