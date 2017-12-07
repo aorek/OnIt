@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:enum="clr-namespace:OnIt.Helper;assembly=OnIt.Helper"
         mc:Ignorable="d"
-        Title="OnIt" Height="603.5" Width="872.5" MinWidth="440" FontFamily="Segoe UI Light" FontSize="16">
+        Title="OnIt" Height="650" Width="855.5" MinWidth="440" FontFamily="Segoe UI" FontSize="16">
 
    <Window.Resources>
       <Style TargetType="TextBlock">
@@ -30,10 +30,12 @@
       </Style>
 
       <DataTemplate x:Key="taskTemplate">
-         <StackPanel x:Name="taskSP" Background="#BFA01600">
-            <TextBlock Text="{Binding Path=Title}" />
-            <TextBlock Text="{Binding Path=Description}" />
-            <TextBlock Text="{Binding Path=DueDate, StringFormat='dd/MM/yyyy'}" />
+         <StackPanel x:Name="taskSP" Width="625">
+            <StackPanel Margin="5">
+               <TextBlock Text="{Binding Path=Title}" FontSize="22" />
+               <TextBlock Text="{Binding Path=Description}" FontWeight="Light" />
+               <TextBlock Text="{Binding Path=DueDate, StringFormat='dd/MM/yyyy'}" FontWeight="Light" />
+            </StackPanel>
          </StackPanel>
 
          <DataTemplate.Triggers>
@@ -148,7 +150,14 @@
       <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="#FF7A7574" />
 
       <Grid Grid.Column="1" Grid.Row="1">
-         <ListBox x:Name="frmListMain" ItemsSource="{Binding Tasks, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource taskTemplate}"></ListBox>
+         <ListBox x:Name="frmListMain" SelectionMode="Extended" ItemsSource="{Binding Tasks, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource taskTemplate}">
+            <ListBox.Style>
+               <Style TargetType="ListBox">
+                  <EventSetter Event="MouseDoubleClick" Handler="OnMouseDoubleClick"/>
+               </Style>
+            </ListBox.Style>
+         </ListBox>
+         
       </Grid>
 
    </Grid>
